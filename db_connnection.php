@@ -1,21 +1,17 @@
 <?php
 
-function OpenCon()
- {
- $dbhost = "localhost";
- $dbuser = "root";
- $dbpass = "";
- $db = "app";
+include "config/database.php";
 
+function OpenCon() {
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
- $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
+    if ($conn->connect_error) {
+        die("Connection Failed:" . $conn->connect_error);
+    }
 
- return $conn;
- }
+    return $conn;
+}
  
-function CloseCon($conn)
- {
- $conn -> close();
- }
-   
-?>
+function CloseCon($conn) {
+    $conn -> close();
+}
