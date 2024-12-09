@@ -171,11 +171,12 @@
                         <h5 class="modal-title">Chỉnh sửa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="edit.php" method="post" enctype="multipart/form-data">
+                    <form enctype="multipart/form-data" id="editForm" class="needs-validation" novalidate>
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Tên món ăn</label>
-                                <input class="form-control my-2" type="text" placeholder="Tên món ăn" name="tenMonAn" />
+                                <input class="form-control my-2" type="text" placeholder="Tên món ăn" name="tenMonAn" required/>
+                                <div class="invalid-feedback">Tên món ăn là bắt buộc</div>
                             </div>
                             <div class="form-group">
                                 <label>Mã món ăn</label>
@@ -187,7 +188,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Giá niêm yết</label>
-                                <input class="form-control my-2" type="number" placeholder="Giá niêm yết" name="giaNiemYet" />
+                                <input class="form-control my-2" type="number" placeholder="Giá niêm yết" name="giaNiemYet" required/>
+                                <div class="invalid-feedback">Giá niêm yết là bắt buộc</div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -229,6 +231,7 @@
     <script src="form_validate.js"></script>
     <script src="add_form_redirect.js"></script>
     <script src="delete_form_redirect.js"></script>
+    <script src="edit_form_redirect.js"></script>
 </body>
 
 </html>
