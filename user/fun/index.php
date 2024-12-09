@@ -29,8 +29,9 @@
                 </tr>
             </thead>
             <tbody>
+
                 <?php
-                require_once('db_connnection.php');
+                require_once '../../db_connnection.php';
 
                 $soDiem = $_GET['soDiem'];
                 $conn = OpenCon();

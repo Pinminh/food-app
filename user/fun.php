@@ -1,5 +1,5 @@
 <?php
-require_once('db_connnection.php');
+require_once '../db_connnection.php';
 $soDiem = $_POST['soDiem'];
 
 $conn = OpenCon();
