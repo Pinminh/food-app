@@ -10,6 +10,7 @@ $(".btn-edit").click(function (e) {
     $('#Edit').modal('show');
 });
 
+
 $(".btn-delete").click(function (e) {
     const tenMonAn = this.getAttribute('data-bs-tenMonAn')
     //console.log(username);

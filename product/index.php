@@ -15,14 +15,44 @@
         <a href="../user" class="btn btn-warning float-end">Chuyển đến màn hình quản lí người dùng</a>
         <h1 class="my-3">Manage Products</h1>
         <hr>
-        <?php
-        if (isset($_GET['err'])) {
-            echo "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">";
-            echo "<strong>Error: </strong>" . $_GET['err'];
-            echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>";
-            echo "</div>";
-        }
-        ?>
+
+        <!-- Modal for error -->
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true" style="z-index: 2050;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Xảy ra lỗi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Modal for success -->
+        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true" style="z-index: 2050;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Thành công</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage" color="red"> <?php echo $success_message ?> </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Modal for submitting food -->
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add">Thêm món ăn mới</button>
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -31,33 +61,38 @@
                         <h5 class="modal-title">Thêm mới</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="add.php" method="post" enctype="multipart/form-data">
+                    <form enctype="multipart/form-data" class="needs-validation" id="addForm" novalidate>
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Tên món ăn</label>
-                                <input class="form-control my-2" type="text" placeholder="Tên món ăn" name="tenMonAn" />
+                                <input class="form-control my-2" type="text" placeholder="Tên món ăn" name="tenMonAn" required/>
+                                <div class="invalid-feedback">Tên món ăn là bắt buộc</div>
                             </div>
                             <div class="form-group">
                                 <label>Mã món ăn</label>
-                                <input class="form-control my-2" type="text" placeholder="Mã món ăn" name="maMonAn" />
+                                <input class="form-control my-2" type="text" placeholder="Mã món ăn" name="maMonAn" required/>
+                                <div class="invalid-feedback">Mã món ăn là bắt buộc</div>
                             </div>
                             <div class="form-group">
                                 <label>Mô tả món ăn</label>
-                                <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonan" style="height: 150px;" /></textarea>
+                                <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonan" style="height: 150px;"/></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Giá niêm yết</label>
-                                <input class="form-control my-2" type="number" placeholder="Giá niêm yết" name="giaNiemYet" />
+                                <input class="form-control my-2" type="number" placeholder="Giá niêm yết" name="giaNiemYet" required/>
+                                <div class="invalid-feedback">Giá niêm yết là bắt buộc</div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Đóng lại</button>
+                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Đóng lại</button>
                             <button class="btn btn-primary" type="submit">Thêm mới</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
+        <!-- Modal for categorize food by price -->
         <button class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#fun">Phân loại món ăn theo giá</button>
         <div class="modal fade" id="fun" tabindex="-1" role="dialog" aria-labelledby="fun" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -81,7 +116,10 @@
                 </div>
             </div>
         </div>
+
+        <!-- Link for categorize food by price -->
         <a class="btn btn-success mb-3" href="fun1">Phân loại món ăn theo giá (tự động)</a>
+        
         <table class="table table-striped mt-2" id="tab-product">
             <thead>
                 <tr>
@@ -89,12 +127,12 @@
                     <th scope="col">Mã món ăn</th>
                     <th scope="col">Mô tả món ăn</th>
                     <th scope="col">Giá niêm yết</th>
-                    <th scope="col">Hành động</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                require_once('db_connnection.php');
+                require_once '../db_connnection.php';
 
                 $conn = OpenCon();
                 $query = "SELECT * FROM `mon_an`;";
@@ -125,6 +163,7 @@
 
             </tbody>
         </table>
+
         <div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="Edit" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -187,6 +226,8 @@
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="index.js"></script>
+    <script src="form_validate.js"></script>
+    <script src="add_form_redirect.js"></script>
 </body>
 
 </html>
