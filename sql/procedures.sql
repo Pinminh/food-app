@@ -142,29 +142,6 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Delete_khach_hang` (
-    IN `userKH` VARCHAR(15)
-)
-BEGIN
-    -- Kiểm tra nếu tài khoản khách hàng có tồn tại hay không
-    IF NOT EXISTS (SELECT 1 FROM khach_hang WHERE tenDangNhap = userKH) THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Tên đăng nhập không tồn tại';
-    ELSE
-        -- Xóa khách hàng khỏi bảng khach_hang
-        DELETE FROM khach_hang 
-        WHERE tenDangNhap = userKH;
-
-        -- Xóa tài khoản liên quan khỏi bảng tai_khoan
-        DELETE FROM tai_khoan 
-        WHERE tenDangNhap = userKH;
-    END IF;
-END$$
-
-DELIMITER ;
-
-
-DELIMITER $$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Delete_tai_khoan` (
     IN `userKH` VARCHAR(15),
     IN `passKH` VARCHAR(256)
