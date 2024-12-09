@@ -18,15 +18,6 @@
         <h1 class="my-3">Manage User</h1>
         <hr>
 
-        <?php
-            if (isset($_GET['err'])) {
-                echo "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">";
-                echo "<strong>Error: </strong>" . $_GET['err'];
-                echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>";
-                echo "</div>";
-            }
-        ?>
-
         <!-- Modal for submitting users -->
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add">Thêm người dùng mới</button>
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
@@ -36,7 +27,7 @@
                         <h5 class="modal-title">Thêm mới</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-                    <iframe name="dummyadd" id="dummyadd" style="display: none;"></iframe>
+
                     <form enctype="multipart/form-data" class="needs-validation" id="addForm" novalidate>
                         <div class="modal-body">
                             <div class="form-group">
@@ -74,8 +65,8 @@
             </div>
         </div>
 
-        <!-- Modal for errors -->
-        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true" style="display: none;">
+        <!-- Modal for error -->
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true" style="z-index: 2050;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -92,7 +83,8 @@
         </div>
         </div>
 
-        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true" style="display: none;">
+        <!-- Modal for success -->
+        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true" style="z-index: 2050;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -200,7 +192,7 @@
                         <h5 class="modal-title">Chỉnh sửa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="edit.php" method="post" enctype="multipart/form-data">
+                    <form enctype="multipart/form-data" class="needs-validation" id="editForm" novalidate>
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Tên đăng nhập</label>
@@ -208,27 +200,31 @@
                             </div>
                             <div class="form-group">
                                 <label>Tên khách hàng</label>
-                                <input class="form-control my-2" type="text" placeholder="Tên khách hàng" name="tenKhachHang" />
+                                <input class="form-control my-2" type="text" placeholder="Tên khách hàng" name="tenKhachHang" required/>
+                                <div class="invalid-feedback">Tên khách hàng là bắt buộc</div>
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ</label>
-                                <input class="form-control my-2" placeholder="Địa chỉ" name="diaChi" />
+                                <input class="form-control my-2" placeholder="Địa chỉ" name="diaChi" required/>
+                                <div class="invalid-feedback">Địa chỉ là bắt buộc</div>
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input class="form-control my-2" type="number" placeholder="Số điện thoại" name="sdt" />
+                                <input class="form-control my-2" type="number" placeholder="Số điện thoại" name="sdt" required/>
+                                <div class="invalid-feedback">Số điện thoại là bắt buộc</div>
                             </div>
                             <div class="form-group">
-                                <label>Hình ảnh hiện tại </label>
+                                <label>Hình ảnh hiện tại</label>
                                 <input class="form-control my-2" type="text" name="anhDaiDien" readonly />
                             </div>
                             <div class="form-group">
                                 <label>Hình ảnh mới</label>
-                                <input type="file" name="fileToUpload1" id="fileToUpload1" class="form-control my-2" />
+                                <input type="file" name="fileToUpload1" id="fileToUpload1" class="form-control my-2"/>
                             </div>
                             <div class="form-group">
                                 <label>Điểm tích lũy</label>
-                                <input class="form-control my-2" type="number" placeholder="Điểm tích lũy" name="diemTichLuy" />
+                                <input class="form-control my-2" type="number" placeholder="Điểm tích lũy" name="diemTichLuy" required/>
+                                <div class="invalid-feedback">Điểm tích lũy là bắt buộc</div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -272,6 +268,7 @@
     <script src="form_validate.js"></script>
     <script src="add_form_redirect.js"></script>
     <script src="delete_form_redirect.js"></script>
+    <script src="edit_form_redirect.js"></script>
 </body>
 
 </html>

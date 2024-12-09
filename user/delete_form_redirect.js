@@ -16,7 +16,7 @@ $(document).ready(function () {
                     $('#errorModal').modal('show');
                 } else if (!response.missing) {
                     $('#successMessage').text(response.success);
-                    $('#successAddModal').modal('show');
+                    $('#successModal').modal('show');
                 }
                 $('#Delete').modal('hide');
             },
