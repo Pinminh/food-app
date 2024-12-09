@@ -135,3 +135,14 @@ CREATE TABLE `tao_don_hang` (
   `maMonAn` VARCHAR(256) NOT NULL,
   `ngayTaoDon` date DEFAULT NULL
 );
+
+CREATE TABLE `log_don_hang` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `maDon` VARCHAR(256) NOT NULL,
+  `thoiGianLapDon` DATE DEFAULT NULL,
+  `tinhTrangDonHang` VARCHAR(256) DEFAULT NULL,
+  `diaChiNhan` VARCHAR(256) NOT NULL,
+  `khachHang` VARCHAR(256) NOT NULL,
+  `giaThanhToan` INT(11) NOT NULL,
+  `thoiGianGhiNhan` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
