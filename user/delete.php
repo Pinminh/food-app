@@ -1,14 +1,20 @@
 <?php
-require_once('db_connnection.php');
-$tenDangNhap = $_POST['tenDangNhap'];
+
+header('Content-Type: application/json');
+
+require_once('../db_connnection.php');
+
+$tenDangNhap = htmlspecialchars($_POST['tenDangNhap'] ?? '');
 
 $conn = OpenCon();
 $query = "CALL Delete_khach_hang('$tenDangNhap')";
 
-if ($conn->query($query) === TRUE) {
-    echo "Successfully";
-    header('Location: index.php');
-} else {
-    echo "Error: " . $query . "<br>" . $conn->error;
-    header('Location: index.php?err=' . $conn->error);
+try {
+    if ($conn->query($query) === TRUE) {
+        echo json_encode(['success' => 'Xóa khách hàng thành công']);
+    } else {
+        echo json_encode(['error' => "Lỗi kết nối cơ sở dữ liệu: {$conn->error}"]);
+    }
+} catch (Exception $e) {
+    echo json_encode(['error' => "Lỗi cơ sở dữ liệu: {$e->getMessage()}"]);
 }

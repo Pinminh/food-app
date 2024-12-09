@@ -37,7 +37,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <iframe name="dummyadd" id="dummyadd" style="display: none;"></iframe>
-                    <form  method="post" enctype="multipart/form-data" class="needs-validation" id="addForm" novalidate>
+                    <form enctype="multipart/form-data" class="needs-validation" id="addForm" novalidate>
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Tên đăng nhập</label>
@@ -96,7 +96,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Xảy ra lỗi</h5>
+                <h5 class="modal-title" id="successModalLabel">Thành công</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -240,6 +240,7 @@
             </div>
         </div>
 
+        <!-- Modal for deleting users -->
         <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -247,10 +248,10 @@
                         <h5 class="modal-title">Xóa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="delete.php" method="post">
+                    <form id="deleteForm">
                         <div class="modal-body">
                             <input type="text" name="tenDangNhap" class="form-control my-2" readonly />
-                            <p>Bạn chắc chưa ?</p>
+                            <p>Bạn chắc chưa?</p>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary btn-outline-light" type="button" data-bs-dismiss="modal">Đóng lại</button>
@@ -270,6 +271,7 @@
     <script src="index.js"></script>
     <script src="form_validate.js"></script>
     <script src="add_form_redirect.js"></script>
+    <script src="delete_form_redirect.js"></script>
 </body>
 
 </html>
