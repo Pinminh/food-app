@@ -1,14 +1,20 @@
 <?php
-require_once('db_connnection.php');
-$maMonAn = $_POST['maMonAn'];
+
+header('Content-Type: application/json');
+
+require_once('../db_connnection.php');
+
+$maMonAn = filter_input(INPUT_POST,'maMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
 
 $conn = OpenCon();
 $query = "CALL Delete_mon_an('$maMonAn')";
 
-if ($conn->query($query) === TRUE) {
-    echo "Successfully";
-    header('Location: index.php');
-} else {
-    echo "Error: " . $query . "<br>" . $conn->error;
-    header('Location: index.php?err=' . $conn->error);
+try {
+    if ($conn->query($query) === TRUE) {
+        echo json_encode(['success' => 'Xóa món ăn thành công']);
+    } else {
+        echo json_encode(['error' => "Lỗi kết nối cơ sở dữ liệu: {$conn->error}"]);
+    }
+} catch (Exception $e) {
+    echo json_encode(['error' => "Lỗi cơ sở dữ liệu: {$e->getMessage()}"]);
 }

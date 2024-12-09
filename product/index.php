@@ -206,7 +206,7 @@
                         <h5 class="modal-title">Xóa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="delete.php" method="post">
+                    <form id="deleteForm">
                         <div class="modal-body">
                             <input type="text" name="tenMonAn" class="form-control my-2" readonly />
                             <p>Bạn chắc chưa ?</p>
@@ -228,6 +228,7 @@
     <script src="index.js"></script>
     <script src="form_validate.js"></script>
     <script src="add_form_redirect.js"></script>
+    <script src="delete_form_redirect.js"></script>
 </body>
 
 </html>
