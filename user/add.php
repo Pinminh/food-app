@@ -3,11 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header('Content-Type: application/json');
-require_once '../db_connnection.php';
 
-define('IMG_MAX_SIZE',500000);
-define('ALLOWED_EXTS',['png', 'jpg', 'jpeg', 'gif']);
-define('TARGET_DIR', 'img/');
+require_once '../config/image.php';
+require_once '../db_connnection.php';
 
 $tenDangNhap = htmlspecialchars($_POST['tenDangNhap'] ?? '');
 $tenKhachHang = htmlspecialchars($_POST['tenKhachHang'] ?? '');

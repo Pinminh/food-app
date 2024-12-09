@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');
 
-require_once('../db_connnection.php');
+require_once '../db_connnection.php';
 
 $tenDangNhap = htmlspecialchars($_POST['tenDangNhap'] ?? '');
 

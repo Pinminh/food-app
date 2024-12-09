@@ -67,7 +67,7 @@
 
         <!-- Modal for error -->
         <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true" style="z-index: 2050;">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="errorModalLabel">Xảy ra lỗi</h5>
@@ -151,7 +151,7 @@
             </thead>
             <tbody>
                 <?php
-                require_once('db_connnection.php');
+                require_once '../db_connnection.php';
 
                 $conn = OpenCon();
                 $query = "SELECT * FROM `khach_hang`;";
