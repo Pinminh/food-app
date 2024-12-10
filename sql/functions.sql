@@ -1,3 +1,6 @@
+DELIMITER $$
+
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `count_dish` (`codeNMA` VARCHAR(256)) RETURNS INT(11) DETERMINISTIC proc_label:BEGIN
 	IF (SELECT LENGTH(codeNMA) <> 4 || codeNMA NOT REGEXP "^[a-zA-Z0-9]{4}") THEN
  		signal sqlstate '45000' set message_text = 'Ma nhom mon an sai dinh dang (4 ky tu bao gom chu hoac so)';
@@ -35,3 +38,5 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `phan_loai` (`codeMA` VARCHAR(15), `p
     	END;
  	END IF;
 END$$
+
+DELIMITER ;
