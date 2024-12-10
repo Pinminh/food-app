@@ -29,7 +29,7 @@
 
                 <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
                     <?php
-                    require_once('db_connnection.php');
+                    require_once '../db_connnection.php';
 
                     $conn = OpenCon();
                     $query = "SELECT * FROM `mon_an`;";

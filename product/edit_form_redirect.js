@@ -15,7 +15,7 @@ $(document).ready(function () {
 
         // Send form data via AJAX
         $.ajax({
-            url: 'add.php', // Target PHP file for processing
+            url: 'edit.php', // Target PHP file for processing
             datatype: 'json',
             type: 'POST',
             data: $(this).serialize(),
@@ -24,14 +24,14 @@ $(document).ready(function () {
                 if (response.error) {
                     $('#errorMessage').text(response.error);
                     $('#errorModal').modal('show');
-                } else if (!response.missing) {
+                } else if (response.success) {
                     sessionStorage.setItem('showSuccessModal', 'true');
                     sessionStorage.setItem('editResponse', response.success);
                     location.reload(true);
                 }
             },
             error: function () {
-                alert('Something went wrong while sending adding food request')
+                alert('Something went wrong while sending editting food request')
             }
         });
     });

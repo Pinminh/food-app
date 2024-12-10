@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 header('Content-Type: application/json');
 
 require_once('../db_connnection.php');
@@ -16,5 +18,5 @@ try {
         echo json_encode(['error' => "Lỗi kết nối cơ sở dữ liệu: {$conn->error}"]);
     }
 } catch (Exception $e) {
-    echo json_encode(['error' => "Lỗi cơ sở dữ liệu: {$e->getMessage()}"]);
+    echo json_encode(['error' => "Lỗi cơ sở dữ liệu: {$e->getMessage()} with maMonAn={$maMonAn}"]);
 }

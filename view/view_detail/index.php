@@ -13,7 +13,7 @@
     <main class='main-content w-100 m-auto'>
         <?php
         if (isset($_GET['maMonAn'])) {
-            require_once('db_connnection.php');
+            require_once '../../db_connnection.php';
 
             $conn = OpenCon();
             $maMonAn = $_GET['maMonAn'];
@@ -28,13 +28,13 @@
                     $query = "SELECT * FROM `mon_an_thuoc_nhom` WHERE maMonAn = '$maMonAn';";
 
                     $result1 = $conn->query($query);
-                    $result2 = $result1->fetch_assoc()['maNhomMonAn'];
+                    $result2 = $result1->fetch_assoc()['maNhomMonAn'] ?? '';
 
                     $query1 = "SELECT * FROM `nhom_mon_an` WHERE maNhomMonAn = '$result2';";
                     $result3 = $conn->query($query1);
-                    $result4 = $result3->fetch_assoc()['tenNhomMonAn'];
+                    $result4 = $result3->fetch_assoc()['tenNhomMonAn'] ?? '';
                     $result3 = $conn->query($query1);
-                    $result5 = $result3->fetch_assoc()['moTaNhomMonAn'];
+                    $result5 = $result3->fetch_assoc()['moTaNhomMonAn'] ?? '';
 
                     echo "<div>
                     <h3>$result4</h3>
@@ -46,7 +46,7 @@
         ?>
         <?php
         if (isset($_GET['maMonAn'])) {
-            require_once('db_connnection.php');
+            require_once '../../db_connnection.php';
 
             $conn = OpenCon();
             $maMonAn = $_GET['maMonAn'];
@@ -64,7 +64,7 @@
                     $query = "SELECT * FROM `anh_mon_an` WHERE maMonAn = '$maMonAn';";
 
                     $result1 = $conn->query($query);
-                    $result2 = $result1->fetch_assoc()['anhMonAn'];
+                    $result2 = $result1->fetch_assoc()['anhMonAn'] ?? '';
 
                     echo "<div class='card'>
                 <img src='$result2' class='card-img-top' alt=''>

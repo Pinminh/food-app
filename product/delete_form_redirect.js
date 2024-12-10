@@ -27,7 +27,7 @@ $(document).ready(function () {
                 } else if (!response.missing) {
                     sessionStorage.setItem('showSuccessModal', 'true');
                     sessionStorage.setItem('deleteResponse', response.success);
-                    location.reload(true);
+                    location.reload();
                 }
                 $('#Delete').modal('hide');
             },

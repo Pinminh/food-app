@@ -3,7 +3,7 @@ DELIMITER $$
 -- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_khach_hang` (IN `userKH` VARCHAR(15), IN `nameKH` VARCHAR(256), IN `adKH` VARCHAR(256), IN `phoneKH` VARCHAR(256), IN `imgKH` VARCHAR(256), IN `pointKH` INT(11))   proc_label:BEGIN
-    ELSEIF (EXISTS (SELECT * FROM khach_hang WHERE tenDangNhap = userKH) || EXISTS (SELECT * FROM nha_hang WHERE tenDangNhap = userKH)) 		THEN
+    IF (EXISTS (SELECT * FROM khach_hang WHERE tenDangNhap = userKH) || EXISTS (SELECT * FROM nha_hang WHERE tenDangNhap = userKH)) 		THEN
     	signal sqlstate '45000' set message_text = 'Tên đăng nhập đã tồn tại';
     ELSEIF (SELECT LENGTH(phoneKH) <> 10 || phoneKH NOT REGEXP "^0[0-9]{9}") THEN
     	signal sqlstate '45000' set message_text = 'Số điện thoại phải bắt đầu với số 0 và bao gồm 10 chữ số';
@@ -112,6 +112,5 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Update_tai_khoan` (IN `userKH` VARC
     	UPDATE tai_khoan SET matKhau = passKH WHERE tenDangNhap = userKH;
     END IF;
 END$$
-
 
 DELIMITER ;

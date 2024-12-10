@@ -27,7 +27,7 @@
             </thead>
             <tbody>
                 <?php
-                require_once('db_connnection.php');
+                require_once '../../db_connnection.php';
 
                 $conn = OpenCon();
                 $query = "SELECT tenMonAn, giaNiemYet, phan_loai(maMonAn, giaNiemYet) AS phanLoai FROM mon_an ORDER BY giaNiemYet;";

@@ -36,6 +36,11 @@
                                 <div class="invalid-feedback">Tên đăng nhập là bắt buộc</div>
                             </div>
                             <div class="form-group">
+                                <label>Mật khẩu</label>
+                                <input class="form-control my-2" type="password" placeholder="Mật khẩu" name="matKhau" required/>
+                                <div class="invalid-feedback">Mật khẩu là bắt buộc</div>
+                            </div>
+                            <div class="form-group">
                                 <label>Tên khách hàng</label>
                                 <input class="form-control my-2" type="text" placeholder="Tên khách hàng" name="tenKhachHang" required/>
                                 <div class="invalid-feedback">Tên khách hàng là bắt buộc</div>
@@ -146,7 +151,7 @@
                     <th scope="col">Số điện thoại</th>
                     <th scope="col">Ảnh đại diện</th>
                     <th scope="col">Điểm tích lũy</th>
-                    <th scope="col">Hành động</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>

@@ -20,18 +20,20 @@ if (empty($tenDangNhap) || empty($tenKhachHang) || empty($diaChi) || empty($sdt)
     exit();
 }
 
-$ext = pathinfo($path, PATHINFO_EXTENSION);
-$id = (string)date("Y_m_d_h_i_sa");
-$fileuploadname = (string)$id;
-$fileuploadname .= ".";
-$fileuploadname .= $ext;
-$target_file = TARGET_DIR . basename($fileuploadname);
+$target_file = $anhDaiDien;
 
 if ($path) {
-    if (file_exists($target_file)) {
-        echo json_encode(['error' => 'Ảnh bị trùng tên']);
-        exit();
-    }
+    // if (file_exists($target_file)) {
+    //     echo json_encode(['error' => 'Ảnh bị trùng tên']);
+    //     exit();
+    // }
+
+    $ext = pathinfo($path, PATHINFO_EXTENSION);
+    $id = (string)date("Y_m_d_h_i_sa");
+    $fileuploadname = (string)$id;
+    $fileuploadname .= ".";
+    $fileuploadname .= $ext;
+    $target_file = TARGET_DIR . basename($fileuploadname);
 
     $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     // Allow certain file formats

@@ -1,11 +1,14 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 header('Content-Type: application/json');
 
-require_once('db_connnection.php');
+require_once('../db_connnection.php');
 
 $tenMonAn = filter_input(INPUT_POST,'tenMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
 $maMonAn = filter_input(INPUT_POST,'maMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
+// $maMonAn = htmlspecialchars($_POST['maMonAn'] ?? '');
 $moTaMonAn = filter_input(INPUT_POST,'moTaMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
 $giaNiemYet = filter_input(INPUT_POST,'giaNiemYet', FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -15,7 +18,7 @@ if (empty($tenMonAn) || empty($maMonAn) || empty($giaNiemYet)) {
 }
 
 $conn = OpenCon();
-$query = "CALL Update_mon_an('$tenMonAn', '$maMonAn', '$moTaMonan', '$giaNiemYet');";
+$query = "CALL Update_mon_an('$tenMonAn', '$maMonAn', '$moTaMonAn', '$giaNiemYet');";
 
 try {
     if ($conn->query($query) === TRUE) {
