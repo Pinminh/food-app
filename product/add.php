@@ -8,7 +8,7 @@ require_once('../db_connnection.php');
 
 $tenMonAn = filter_input(INPUT_POST,'tenMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
 $maMonAn = filter_input(INPUT_POST,'maMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
-$moTaMonAn = filter_input(INPUT_POST,'moTaMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
+$moTaMonAn = htmlspecialchars($_POST['moTaMonAn'] ?? '');
 $giaNiemYet = filter_input(INPUT_POST,'giaNiemYet', FILTER_SANITIZE_SPECIAL_CHARS);
 
 if (empty($tenMonAn) || empty($maMonAn) || empty($giaNiemYet)) {

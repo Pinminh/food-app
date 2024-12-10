@@ -1,4 +1,14 @@
 $(document).ready(function () {
+    if (sessionStorage.getItem('showSuccessModal') === 'true') {
+        const message = sessionStorage.getItem('deleteResponse')
+        $('#successMessage').text(message);
+        $('#successModal').modal('show');
+        sessionStorage.removeItem('showSuccessModal');
+        sessionStorage.removeItem('deleteResponse');
+    }
+});
+
+$(document).ready(function () {
     // Intercept form submission
     $('#deleteForm').on('submit', function (e) {
         e.preventDefault(); // Prevent the default form submission
@@ -15,8 +25,9 @@ $(document).ready(function () {
                     $('#errorMessage').text(response.error);
                     $('#errorModal').modal('show');
                 } else if (!response.missing) {
-                    $('#successMessage').text(response.success);
-                    $('#successModal').modal('show');
+                    sessionStorage.setItem('showSuccessModal', 'true')
+                    sessionStorage.setItem('deleteResponse', response.success)
+                    location.reload(true)
                 }
                 $('#Delete').modal('hide');
             },

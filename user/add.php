@@ -8,6 +8,7 @@ require_once '../config/image.php';
 require_once '../db_connnection.php';
 
 $tenDangNhap = htmlspecialchars($_POST['tenDangNhap'] ?? '');
+$matKhau = htmlspecialchars($_POST['matKhau'] ??'');
 $tenKhachHang = htmlspecialchars($_POST['tenKhachHang'] ?? '');
 $diaChi = htmlspecialchars($_POST['diaChi'] ?? '');
 $sdt = htmlspecialchars($_POST['sdt'] ?? '');
@@ -15,7 +16,7 @@ $diemTichLuy = 0;
 
 $path = $_FILES['fileToUpload']['name'] ?? null;
 
-if (empty($tenDangNhap) || empty($tenKhachHang) || empty($diaChi) || empty($sdt) || empty($path)) {
+if (empty($tenDangNhap) || empty($matKhau) || empty($tenKhachHang) || empty($diaChi) || empty($sdt) || empty($path)) {
     echo json_encode(['missing' => true]);
     exit();
 }
@@ -47,10 +48,11 @@ if ($_FILES['fileToUpload']['size'] > IMG_MAX_SIZE) {
 move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
 $conn = OpenCon();
-$query = "CALL Add_khach_hang('$tenDangNhap', '$tenKhachHang', '$diaChi,', '$sdt', '$target_file', '$diemTichLuy');";
+$query1 = "CALL Add_tai_khoan('$tenDangNhap', '$matKhau');";
+$query2 = "CALL Add_khach_hang('$tenDangNhap', '$tenKhachHang', '$diaChi', '$sdt', '$target_file', '$diemTichLuy');";
 
 try {
-    if ($conn->query($query) === TRUE) {
+    if ($conn->query($query1) === TRUE && $conn->query($query2) === TRUE) {
         echo json_encode(['success' => 'Thêm khách hàng thành công']);
     } else {
         echo json_encode(['error' => "Lỗi kết nối cơ sở dữ liệu: {$conn->error}"]);

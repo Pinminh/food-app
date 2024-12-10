@@ -15,7 +15,7 @@ $(document).ready(function () {
 
         // Send form data via AJAX
         $.ajax({
-            url: 'add.php', // Target PHP file for processing
+            url: 'edit.php', // Target PHP file for processing
             datatype: 'json',
             type: 'POST',
             data: $(this).serialize(),
@@ -31,7 +31,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('Something went wrong while sending adding food request')
+                alert('Something went wrong while sending editting food request')
             }
         });
     });

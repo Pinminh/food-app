@@ -16,5 +16,5 @@ try {
         echo json_encode(['error' => "Lỗi kết nối cơ sở dữ liệu: {$conn->error}"]);
     }
 } catch (Exception $e) {
-    echo json_encode(['error' => "Lỗi cơ sở dữ liệu: {$e->getMessage()}"]);
+    echo json_encode(['error' => "Lỗi cơ sở dữ liệu: {$e->getMessage()} with maMonAn={$maMonAn}"]);
 }

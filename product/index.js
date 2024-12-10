@@ -13,10 +13,13 @@ $(".btn-edit").click(function (e) {
 
 $(".btn-delete").click(function (e) {
     const tenMonAn = this.getAttribute('data-bs-tenMonAn')
+    const maMonAn = this.getAttribute('data-bs-maMonAn')
     //console.log(username);
-    $("#Delete input[name='tenMonAn']").val(tenMonAn);
+    $("#Delete input[name='tenMonAn']").val(tenMonAn)
+    $("#Delete input[name='maMonAn']").val(maMonAn)
     $('#Delete').modal('show');
 });
+
 $(document).ready(function () {
     $('#tab-product').DataTable();
 });

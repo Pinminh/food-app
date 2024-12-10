@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Mô tả món ăn</label>
-                                <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonan" style="height: 150px;"/></textarea>
+                                <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonAn" style="height: 150px;"/></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Giá niêm yết</label>
@@ -152,7 +152,7 @@
                                 <div class="d-inline-flex">
                                     <a class="btn btn-secondary m-1" href="../view/view_detail/index.php?maMonAn=<?php echo $row['maMonAn'] ?>">Read</a>
                                     <button type='button' class='btn-edit btn btn-primary m-1' data-bs-tenMonAn='<?php echo $row['tenMonAn'] ?>' data-bs-maMonAn='<?php echo $row['maMonAn'] ?>' data-bs-moTaMonan='<?php echo $row['moTaMonan'] ?>' data-bs-giaNiemYet='<?php echo $row['giaNiemYet'] ?>' data-bs-target='#Edit' data-bs-toggle='modal'>Edit</button>
-                                    <button type='button' class='btn-delete btn btn-danger m-1' data-bs-tenMonAn='<?php echo $row['tenMonAn'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'>Delete</button>
+                                    <button type='button' class='btn-delete btn btn-danger m-1' data-bs-tenMonAn='<?php echo $row['tenMonAn'] ?>' data-bs-maMonAn='<?php echo $row['maMonAn'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'>Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -184,7 +184,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Mô tả món ăn</label>
-                                <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonan" style="height: 150px;" /></textarea>
+                                <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonAn" style="height: 150px;" /></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Giá niêm yết</label>
@@ -211,7 +211,8 @@
                     <form id="deleteForm">
                         <div class="modal-body">
                             <input type="text" name="tenMonAn" class="form-control my-2" readonly />
-                            <p>Bạn chắc chưa ?</p>
+                            <input type="text" name="maMonAn" class="form-control my-2" readonly />
+                            <p>Bạn chắc chưa?</p>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary btn-outline-light" type="button" data-bs-dismiss="modal">Đóng lại</button>

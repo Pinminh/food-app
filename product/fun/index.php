@@ -27,7 +27,7 @@
             </thead>
             <tbody>
                 <?php
-                require_once('db_connnection.php');
+                require_once '../../db_connnection.php';
 
                 $conn = OpenCon();
                 $gia = $_GET['gia'];
