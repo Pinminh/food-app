@@ -27,7 +27,7 @@ CREATE TABLE `danh_gia_mon_an` (
 
 CREATE TABLE `doi_diem` (
   `khachHang` VARCHAR(256) NOT NULL,
-  `maPhieu` VARCHAR(256) NOT NULL,
+  `maPhieu` VARCHAR(15) NOT NULL,
   `loaiPhieu` VARCHAR(256) NOT NULL,
   `ngayKetThuc` date DEFAULT NULL
 );
@@ -102,14 +102,14 @@ CREATE TABLE `nhom_mon_an` (
 CREATE TABLE `phieu_giam_gia` (
   `nhaHang` VARCHAR(15) NOT NULL,
   `tenPhieu` VARCHAR(256) DEFAULT NULL,
-  `maPhieu` VARCHAR(256) NOT NULL,
+  `maPhieu` VARCHAR(15) NOT NULL,
   `tienGiam` int(11) DEFAULT NULL,
   `phanTramGiam` float DEFAULT NULL
 );
 
 
 CREATE TABLE `phieu_thanh_toan` (
-  `maPhieu` VARCHAR(256) NOT NULL,
+  `maPhieu` VARCHAR(15) NOT NULL,
   `tinhTrang` VARCHAR(256) DEFAULT NULL
 );
 
@@ -130,8 +130,8 @@ CREATE TABLE `tai_khoan` (
 
 CREATE TABLE `tao_don_hang` (
   `maDonHang` varchar(15) NOT NULL,
-  `maGiamGia` varchar(256) DEFAULT NULL,
-  `maPhieuThanhToan` varchar(256) DEFAULT NULL,
+  `maGiamGia` varchar(15) DEFAULT NULL,
+  `maPhieuThanhToan` varchar(15) DEFAULT NULL,
   `maMonAn` varchar(15) NOT NULL,
   `ngayTaoDon` date DEFAULT NULL
 );
