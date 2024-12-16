@@ -20,6 +20,38 @@ BEGIN
     END IF;
 END$$
 
+CREATE PROCEDURE add_restaurant (
+    IN p_username VARCHAR(16),
+    IN p_password VARCHAR(255),
+    IN p_name VARCHAR(255),
+    IN p_address VARCHAR(255),
+    IN p_phone VARCHAR(10),
+    IN p_avatar VARCHAR(255),
+    IN p_description TEXT
+)
+BEGIN
+    IF EXISTS (
+        SELECT 1 
+        FROM customer 
+        WHERE username = p_username
+    ) OR EXISTS (
+        SELECT 1 
+        FROM restaurant 
+        WHERE username = p_username
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Tên đăng nhập đã tồn tại.';
+    END IF;
+    IF p_phone NOT REGEXP '^0[0-9]{9}$' THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Số điện thoại không hợp lệ. Số điện thoại phải bắt đầu bằng số 0 và có đúng 10 chữ số.';
+    END IF;
+
+    INSERT INTO restaurant (username, password, name, address, phone, avatar, description)
+    VALUES (p_username, p_password, p_name, p_address, p_phone, p_avatar, p_description);
+END $$
+
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Dish` ( 
     IN `Dish_name` VARCHAR(255), 
     IN `Dish_code` VARCHAR(5), 
@@ -53,6 +85,22 @@ BEGIN
     END IF;
 END$$
 
+CREATE PROCEDURE delete_restaurant (
+    IN p_username VARCHAR(16)
+)
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 
+        FROM restaurant 
+        WHERE username = p_username
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Tên đăng nhập không tồn tại.';
+    END IF;
+
+    DELETE FROM restaurant WHERE username = p_username;
+END $$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Delete_Dish` ( 
     IN `dish_code` VARCHAR(15)
 )
@@ -83,6 +131,40 @@ BEGIN
         WHERE username = cus_user;
     END IF;
 END$$
+
+CREATE PROCEDURE update_restaurant (
+    IN p_username VARCHAR(16),
+    IN p_password VARCHAR(255),
+    IN p_name VARCHAR(255),
+    IN p_address VARCHAR(255),
+    IN p_phone VARCHAR(10),
+    IN p_avatar VARCHAR(255),
+    IN p_description TEXT
+)
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 
+        FROM restaurant 
+        WHERE username = p_username
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Tên đăng nhập không tồn tại.';
+    END IF;
+    IF p_phone NOT REGEXP '^0[0-9]{9}$' THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Số điện thoại không hợp lệ. Số điện thoại phải bắt đầu bằng số 0 và có đúng 10 chữ số.';
+    END IF;
+
+    UPDATE restaurant
+    SET
+        password = p_password,
+        name = p_name,
+        address = p_address,
+        phone = p_phone,
+        avatar = p_avatar,
+        description = p_description
+    WHERE username = p_username;
+END $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Update_Dish` ( 
     IN `dish_name` VARCHAR(255), 
