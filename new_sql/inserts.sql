@@ -55,39 +55,39 @@ INSERT INTO `restaurant_image` (`restaurant`, `image`) VALUES
 
 -- Add some dishes for these new restaurants
 INSERT INTO `dish` (`id`, `name`, `price`, `restaurant`, `description`) VALUES
-    ('DH001', 'Gỏi củ hủ dừa', 200000, 'username1', 'Món gỏi củ hủ dừa tôm thịt là món ăn đặc sản của người miền Tây, thường được dùng làm món khai vị.'),
-    ('DH002', 'Gỏi ngó sen tôm thịt', 100000, 'username2', 'Gỏi ngó sen tôm thịt là món gỏi phổ biến trong các bữa tiệc, với hương vị thanh ngọt của tôm, thịt.'),
-    ('DH003', 'Gỏi bò mè bóp thầu', 76000, 'username1', 'Gỏi bò mè bóp thầu'),
-    ('DH004', 'Gỏi bưởi tôm mực', 54000, 'username2', 'Gỏi bưởi tôm mực với hương vị chua ngọt giúp bữa ăn thêm hương vị'),
-    ('DH005', 'Mì ý sốt kem paris', 106000, 'username3', 'Mì Ý sốt kem là một món ăn mang đậm phong vị Châu Âu. Sợi mì dai dai, chín tới, không bị nhũn, nát.'),
-    ('DH006', 'Mì vịt tiềm', 83000, 'username4', 'Mì vịt tiềm là món ăn ngon nổi tiếng của người Hoa và có giá trị dinh dưỡng cao, vì thịt vịt có vị n'),
-    ('DH007', 'Mì cay', 76000, 'username5', 'Với vị cay nồng kết hợp với hải sản tươi ngon, mì cay 7 cấp độ siêu ngon, kích thích vị giác.'),
-    ('DH008', 'Ramen', 89000, 'username6', 'Món ăn này là sự hòa quyện hoàn hảo giữa hương vị sợi vì độc đáo, nước súp thơm ngon đi kèm với các.'),
-    ('DH009', 'Mì lạnh', 81000, 'username7', 'Mì lạnh Hàn Quốc là món nổi tiếng và được sử dụng phổ biến của xứ sở kim chi đặc biệt vào dịp hè.'),
-    ('DH010', 'Cơm gà Hong Kong', 70000, 'username1', 'Món ăn nguồn gốc từ Hong Kong, Trung Quốc, với hương vị đậm đà đặc trưng của món Hoa'),
-    ('DH011', 'Cơm gà Hải Nam', 70000, 'username2', 'Món ăn nguồn gốc từ Hải Nam, Trung Quốc, với hương vị đậm đà đặc trưng của món Hoa'),
-    ('DH012', 'Cơm sườn bì chả', 54000, 'username3', 'Món cơm tấm bình dân quen thuộc của người Việt Nam'),
-    ('DH013', 'Cơm rang kim chi', 58000, 'username4', 'Món ăn kết hợp giữa cơm rang quen thuộc và kim chi, tạo nên sự kết hợp lạ mà quen.'),
-    ('DH014', 'Cơm bò xào nấm', 100000, 'username5', 'Sự kết hợp cân bằng và hoàn hảo cho một bữa ăn đầy đủ dinh dưỡng'),
-    ('DH015', 'Súp hạt tiêu', 116000, 'username6', 'Món súp được rất nhiều người yêu thích, với hương vị đặc trưng của hạt tiêu, kết hợp hoàn hảo với bá'),
-    ('DH016', 'Súp phô mai', 95000, 'username7', 'Món súp khoai tây phô mai là món súp rất được ưa chuộng là sự kết hợp giữa các nguyên liệu: khoai tâ'),
-    ('DH017', 'Súp lơ', 60000, 'username8', 'Món ăn đơn giản, nhưng vẫn thơm ngon và giàu dinh dưỡng'),
-    ('DH018', 'Súp Lasagna', 50000, 'username1', 'Tất cả mọi thứ đều được nấu trong một chảo – thêm các nguyên liệu vào khi bạn chế biến cho đến khi b'),
-    ('DH019', 'Bào ngư vi cá', 1234, 'username2', 'Món ăn đặc biệt bổ dưỡng với những nguyên liệu cao cấp, thích hợp để bồi bổ cho người ốm, phũ nữ đan'),
-    ('DH020', 'Bún chả Hà Nội', 69000, 'username3', 'Món ăn truyền thống của Hà Nội, được thực khách cả trong và ngoài nước ưa thích với chả nướng thơm p'),
-    ('DH021', 'Bún thang', 75000, 'username4', 'Bún thang là một món nước mang đậm hương vị của người Hà Nội. Món ăn nổi tiếng bởi sự cầu kỳ nhưng t'),
-    ('DH022', 'Bún mọc', 74000, 'username5', 'Với hương vị hấp dẫn từ những viên mọc hòa quyện cùng nước dùng đậm đà từ xương, bún mọc là món ăn đ'),
-    ('DH023', 'Bún riêu cua', 120000, 'username6', 'Món ăn bình dân nhưng không kém phần hấp dẫn với nước dùng ngọt vị, riêu cua thơm ngon'),
-    ('DH024', 'Bún tôm Hải Phòng', 91000, 'username7', 'Bún tôm là một món ăn đặc sản Hải Phòng thơm ngon, hấp dẫn nổi tiếng của người dân nơi đây với hương'),
-    ('DH025', 'Bún đậu mắm tôm', 79000, 'username8', 'Một mẹt bún đậu mắm tôm với đầy đủ các nguyên liệu hấp dẫn, sạch sẽ chắc hẳn là món ngon mà bất cứ a'),
-    ('DH026', 'Bún bò Huế', 83000, 'username1', 'Bún bò là một trong những đặc sản của xứ Huế, mặc dù món bún này phổ biến trên cả ba miền ở Việt Nam'),
-    ('DH027', 'Bánh xèo', 51000, 'username2', 'Bánh xèo gồm bột bên ngoài, bên trong có nhân là tôm, thịt, giá đỗ, kim chi, khoai tây, hẹ, tôm, thị'),
-    ('DH028', 'Bánh đúc Hà Nội', 89000, 'username3', 'Chỉ với những nguyên liệu cơ bản như mộc nhĩ, rau thơm, thịt xào hành tây, bánh đúc đã mang một hư'),
-    ('DH029', 'Bánh mì chảo', 65000, 'username4', 'Một phần bánh mì chảo gồm thịt bò bít tết, trứng ốp la, vài lát hành tây, được rưới nước sốt trên ch'),
-    ('DH030', 'Bánh mì gà', 107000, 'username5', 'Bánh mì gà không quá dài theo kiểu bánh mì Pháp thường thấy, cũng không dài như bánh mì truyền thống'),
-    ('DH031', 'Pizza', 120000, 'username6', 'Món ăn phổ biến và được ưa thính trên toàn thế giới, nguồn gốc từ Ý'),
-    ('DH032', 'Bánh cuốn nóng', 52000, 'username7', 'Món ăn đơn giản nhưng vẫn có dấu ấn riêng với thịt xay lẫn trong bánh, nước chấm đậm đà'),
-    ('DH033', 'Bánh ướt', 70000, 'username8', 'Món ăn đơn giản đổi vị cho ngày chán cơm');
+    ('DH001', 'Gỏi củ hủ dừa', 200000, 'restaurant1', 'Món gỏi củ hủ dừa tôm thịt là món ăn đặc sản của người miền Tây, thường được dùng làm món khai vị.'),
+    ('DH002', 'Gỏi ngó sen tôm thịt', 100000, 'restaurant2', 'Gỏi ngó sen tôm thịt là món gỏi phổ biến trong các bữa tiệc, với hương vị thanh ngọt của tôm, thịt.'),
+    ('DH003', 'Gỏi bò mè bóp thầu', 76000, 'restaurant1', 'Gỏi bò mè bóp thầu'),
+    ('DH004', 'Gỏi bưởi tôm mực', 54000, 'restaurant2', 'Gỏi bưởi tôm mực với hương vị chua ngọt giúp bữa ăn thêm hương vị'),
+    ('DH005', 'Mì ý sốt kem paris', 106000, 'restaurant3', 'Mì Ý sốt kem là một món ăn mang đậm phong vị Châu Âu. Sợi mì dai dai, chín tới, không bị nhũn, nát.'),
+    ('DH006', 'Mì vịt tiềm', 83000, 'restaurant4', 'Mì vịt tiềm là món ăn ngon nổi tiếng của người Hoa và có giá trị dinh dưỡng cao, vì thịt vịt có vị n'),
+    ('DH007', 'Mì cay', 76000, 'restaurant5', 'Với vị cay nồng kết hợp với hải sản tươi ngon, mì cay 7 cấp độ siêu ngon, kích thích vị giác.'),
+    ('DH008', 'Ramen', 89000, 'restaurant6', 'Món ăn này là sự hòa quyện hoàn hảo giữa hương vị sợi vì độc đáo, nước súp thơm ngon đi kèm với các.'),
+    ('DH009', 'Mì lạnh', 81000, 'restaurant7', 'Mì lạnh Hàn Quốc là món nổi tiếng và được sử dụng phổ biến của xứ sở kim chi đặc biệt vào dịp hè.'),
+    ('DH010', 'Cơm gà Hong Kong', 70000, 'restaurant1', 'Món ăn nguồn gốc từ Hong Kong, Trung Quốc, với hương vị đậm đà đặc trưng của món Hoa'),
+    ('DH011', 'Cơm gà Hải Nam', 70000, 'restaurant2', 'Món ăn nguồn gốc từ Hải Nam, Trung Quốc, với hương vị đậm đà đặc trưng của món Hoa'),
+    ('DH012', 'Cơm sườn bì chả', 54000, 'restaurant3', 'Món cơm tấm bình dân quen thuộc của người Việt Nam'),
+    ('DH013', 'Cơm rang kim chi', 58000, 'restaurant4', 'Món ăn kết hợp giữa cơm rang quen thuộc và kim chi, tạo nên sự kết hợp lạ mà quen.'),
+    ('DH014', 'Cơm bò xào nấm', 100000, 'restaurant5', 'Sự kết hợp cân bằng và hoàn hảo cho một bữa ăn đầy đủ dinh dưỡng'),
+    ('DH015', 'Súp hạt tiêu', 116000, 'restaurant6', 'Món súp được rất nhiều người yêu thích, với hương vị đặc trưng của hạt tiêu, kết hợp hoàn hảo với bá'),
+    ('DH016', 'Súp phô mai', 95000, 'restaurant7', 'Món súp khoai tây phô mai là món súp rất được ưa chuộng là sự kết hợp giữa các nguyên liệu: khoai tâ'),
+    ('DH017', 'Súp lơ', 60000, 'restaurant8', 'Món ăn đơn giản, nhưng vẫn thơm ngon và giàu dinh dưỡng'),
+    ('DH018', 'Súp Lasagna', 50000, 'restaurant1', 'Tất cả mọi thứ đều được nấu trong một chảo – thêm các nguyên liệu vào khi bạn chế biến cho đến khi b'),
+    ('DH019', 'Bào ngư vi cá', 1234, 'restaurant2', 'Món ăn đặc biệt bổ dưỡng với những nguyên liệu cao cấp, thích hợp để bồi bổ cho người ốm, phũ nữ đan'),
+    ('DH020', 'Bún chả Hà Nội', 69000, 'restaurant3', 'Món ăn truyền thống của Hà Nội, được thực khách cả trong và ngoài nước ưa thích với chả nướng thơm p'),
+    ('DH021', 'Bún thang', 75000, 'restaurant4', 'Bún thang là một món nước mang đậm hương vị của người Hà Nội. Món ăn nổi tiếng bởi sự cầu kỳ nhưng t'),
+    ('DH022', 'Bún mọc', 74000, 'restaurant5', 'Với hương vị hấp dẫn từ những viên mọc hòa quyện cùng nước dùng đậm đà từ xương, bún mọc là món ăn đ'),
+    ('DH023', 'Bún riêu cua', 120000, 'restaurant6', 'Món ăn bình dân nhưng không kém phần hấp dẫn với nước dùng ngọt vị, riêu cua thơm ngon'),
+    ('DH024', 'Bún tôm Hải Phòng', 91000, 'restaurant7', 'Bún tôm là một món ăn đặc sản Hải Phòng thơm ngon, hấp dẫn nổi tiếng của người dân nơi đây với hương'),
+    ('DH025', 'Bún đậu mắm tôm', 79000, 'restaurant8', 'Một mẹt bún đậu mắm tôm với đầy đủ các nguyên liệu hấp dẫn, sạch sẽ chắc hẳn là món ngon mà bất cứ a'),
+    ('DH026', 'Bún bò Huế', 83000, 'restaurant1', 'Bún bò là một trong những đặc sản của xứ Huế, mặc dù món bún này phổ biến trên cả ba miền ở Việt Nam'),
+    ('DH027', 'Bánh xèo', 51000, 'restaurant2', 'Bánh xèo gồm bột bên ngoài, bên trong có nhân là tôm, thịt, giá đỗ, kim chi, khoai tây, hẹ, tôm, thị'),
+    ('DH028', 'Bánh đúc Hà Nội', 89000, 'restaurant3', 'Chỉ với những nguyên liệu cơ bản như mộc nhĩ, rau thơm, thịt xào hành tây, bánh đúc đã mang một hư'),
+    ('DH029', 'Bánh mì chảo', 65000, 'restaurant4', 'Một phần bánh mì chảo gồm thịt bò bít tết, trứng ốp la, vài lát hành tây, được rưới nước sốt trên ch'),
+    ('DH030', 'Bánh mì gà', 107000, 'restaurant5', 'Bánh mì gà không quá dài theo kiểu bánh mì Pháp thường thấy, cũng không dài như bánh mì truyền thống'),
+    ('DH031', 'Pizza', 120000, 'restaurant6', 'Món ăn phổ biến và được ưa thính trên toàn thế giới, nguồn gốc từ Ý'),
+    ('DH032', 'Bánh cuốn nóng', 52000, 'restaurant7', 'Món ăn đơn giản nhưng vẫn có dấu ấn riêng với thịt xay lẫn trong bánh, nước chấm đậm đà'),
+    ('DH033', 'Bánh ướt', 70000, 'restaurant8', 'Món ăn đơn giản đổi vị cho ngày chán cơm');
 
 INSERT INTO `dish_image` (`dish`, `image`) VALUES
     ('DH001', 'https://cdn.tgdd.vn/Files/2022/04/04/1423782/goi-y-8-mon-nguoi-khai-vi-cho-nhung-buoi-tiec-hoi-hop-voi-gia-dinh-202204040912057499.jpg'),
@@ -162,9 +162,9 @@ INSERT INTO `dish_dish_group` (`dish`, `dish_group`) VALUES
 
 -- Discounts
 INSERT INTO `discount` (`id`, `name`, `type`, `discount_amount`, `discount_percentage`, `restaurant`, `start_date`, `end_date`) VALUES
-    ('DC001', 'New Year Promo', 'fixed', 20000, NULL, 'username1', '2024-12-25', '2025-01-05'),
-    ('DC002', 'Weekend Special', 'percentage', NULL, 0.15, 'username2', '2024-12-01', '2024-12-31'),
-    ('DC003', 'Loyalty Discount', 'fixed', 30000, NULL, 'username3', '2024-12-01', '2025-01-31');
+    ('DC001', 'New Year Promo', 'fixed', 20000, NULL, 'restaurant1', '2024-12-25', '2025-01-05'),
+    ('DC002', 'Weekend Special', 'percentage', NULL, 0.15, 'restaurant2', '2024-12-01', '2024-12-31'),
+    ('DC003', 'Loyalty Discount', 'fixed', 30000, NULL, 'restaurant3', '2024-12-01', '2025-01-31');
 
 -- Orders
 INSERT INTO `order` (`id`, `order_date`, `status`, `delivery_address`, `customer`, `total_price`, `recipient_phone`, `delivery_company`) VALUES
@@ -220,9 +220,9 @@ INSERT INTO `customer_discount` (`customer`, `discount`) VALUES
 
 -- Point Discounts
 INSERT INTO `point_discount` (`customer`, `discount`, `points`, `discount_type`, `start_date`, `end_date`) VALUES
-    ('customer1', 'DC001', 100, 'fixed', '2024-12-01', '2025-01-31'),
-    ('customer2', 'DC002', 200, 'percentage', '2024-12-01', '2025-01-31'),
-    ('customer3', 'DC003', 150, 'fixed', '2024-12-01', '2025-01-31');
+    ('customer1', 'DC001', 20, 'fixed', '2024-12-01', '2025-01-31'),
+    ('customer2', 'DC002', 50, 'percentage', '2024-12-01', '2025-01-31'),
+    ('customer3', 'DC003', 100, 'fixed', '2024-12-01', '2025-01-31');
 
 -- Feedback
 INSERT INTO `feedback` (`customer`, `dish`, `ordinal`, `rating`, `comment`, `date`) VALUES
