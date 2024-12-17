@@ -268,7 +268,7 @@ CREATE PROCEDURE `count_dish` (
     IN `floor_price` DECIMAL(10, 2)
 )
 BEGIN
-	SELECT 
+    SELECT 
         dish_group.name, 
         floor_price, 
         COUNT(*) AS quantity
@@ -289,7 +289,7 @@ CREATE PROCEDURE `count_point` (
     IN `point` INT
 )   
 BEGIN
-	SELECT username, name, address, phone, avatar, points 
+    SELECT username, name, address, phone, avatar, points 
     FROM customer
     WHERE points >= point
     ORDER BY points;
