@@ -18,7 +18,7 @@ if (empty($tenMonAn) || empty($maMonAn) || empty($giaNiemYet)) {
 }
 
 $conn = OpenCon();
-$query = "CALL Update_mon_an('$tenMonAn', '$maMonAn', '$moTaMonAn', '$giaNiemYet');";
+$query = "CALL update_dish('$tenMonAn', '$maMonAn', '$moTaMonAn', '$giaNiemYet');";
 
 try {
     if ($conn->query($query) === TRUE) {

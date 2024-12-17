@@ -8,7 +8,8 @@ require_once('../db_connnection.php');
 
 $tenMonAn = filter_input(INPUT_POST,'tenMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
 $maMonAn = filter_input(INPUT_POST,'maMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
-$moTaMonAn = htmlspecialchars($_POST['moTaMonAn'] ?? '');
+$maNhaHang = filter_input(INPUT_POST, 'maNhaHang', FILTER_SANITIZE_SPECIAL_CHARS);
+$moTaMonAn = filter_input(INPUT_POST, 'moTaMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
 $giaNiemYet = filter_input(INPUT_POST,'giaNiemYet', FILTER_SANITIZE_SPECIAL_CHARS);
 
 if (empty($tenMonAn) || empty($maMonAn) || empty($giaNiemYet)) {
@@ -17,7 +18,7 @@ if (empty($tenMonAn) || empty($maMonAn) || empty($giaNiemYet)) {
 }
 
 $conn = OpenCon();
-$query = "CALL add_mon_an('$tenMonAn', '$maMonAn', '$moTaMonAn', '$giaNiemYet');";
+$query = "CALL add_dish('$tenMonAn', '$maMonAn', '$moTaMonAn', '$giaNiemYet', '$maNhaHang');";
 
 try {
     if ($conn->query($query) === TRUE) {

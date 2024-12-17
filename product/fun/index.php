@@ -12,16 +12,15 @@
 
 <body>
     <div class="container">
-        <a href="../../product/" class="btn btn-warning float-end mx-2">Chuyển đến màn hình quản lí sản phẩm</a>
-        <a href="../../user" class="btn btn-warning float-end">Chuyển đến màn hình quản lí khách hàng</a>
-        <h1 class="my-3">Manage Products</h1>
+        <a href="../../product/" class="btn btn-warning float-end m-1">Sản phẩm</a>
+        <a href="../../user" class="btn btn-warning float-end m-1">Khách hàng</a>
+        <h1 class="my-3">Quản lý món ăn</h1>
         <hr>
-        <h4 class="text-primary my-4">Danh sách số lượng mỗi nhóm món ăn có giá lớn hơn <?php echo $_GET['gia'] ?></h4>
+        <h4 class="text-primary my-4">Danh sách số lượng mỗi nhóm món ăn có giá lớn hơn <?php echo $_GET['price'] ?></h4>
         <table class="table table-striped mt-2" id="tab-product">
             <thead>
                 <tr>
                     <th scope="col">Tên nhóm món ăn</th>
-                    <th scope="col">Giá lớn hơn</th>
                     <th scope="col">Số lượng</th>
                 </tr>
             </thead>
@@ -30,8 +29,8 @@
                 require_once '../../db_connnection.php';
 
                 $conn = OpenCon();
-                $gia = $_GET['gia'];
-                $query = "CALL count_mon_an($gia);";
+                $price = $_GET['price'];
+                $query = "CALL count_dish_per_group_by_price($price);";
 
                 $result = $conn->query($query);
 
@@ -40,9 +39,8 @@
                     while ($row = $result->fetch_assoc()) {
                 ?>
                         <tr class="justify-content-center">
-                            <th class='align-middle' scope="row"><?php echo $row['tenNhomMonAn'] ?></th>
-                            <td class='align-middle'><?php echo $row['Gia_lon_hon'] ?></td>
-                            <td class='align-middle'><?php echo $row['soLuong'] ?></td>
+                            <th class='align-middle' scope="row"><?php echo $row['name'] ?></th>
+                            <td class='align-middle'><?php echo $row['amount'] ?></td>
                         </tr>
                 <?php
                     }

@@ -9,7 +9,7 @@ require_once('../db_connnection.php');
 $maMonAn = filter_input(INPUT_POST,'maMonAn', FILTER_SANITIZE_SPECIAL_CHARS);
 
 $conn = OpenCon();
-$query = "CALL Delete_mon_an('$maMonAn')";
+$query = "CALL delete_dish('$maMonAn')";
 
 try {
     if ($conn->query($query) === TRUE) {

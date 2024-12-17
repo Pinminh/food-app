@@ -12,11 +12,12 @@
 
 <body>
     <div class="container">
-        <a href="../../product/" class="btn btn-warning float-end mx-2">Chuyển đến màn hình quản lí sản phẩm</a>
-        <a href="../../user" class="btn btn-warning float-end">Chuyển đến màn hình quản lí khách hàng</a>
-        <h1 class="my-3">Manage Products</h1>
+        <a href="../../product/" class="btn btn-warning float-end mx-2">Sản phẩm</a>
+        <a href="../../user" class="btn btn-warning float-end">Khách hàng</a>
+        <h1 class="my-3">Quản lý món ăn</h1>
         <hr>
         <h4 class="text-primary my-4">Phân loại món ăn tự động</h4>
+        <p>Các món ăn được phân loại trên cơ sở 1/3 món giá thấp, 1/3 món giá trung bình, và 1/3 món giá cao.</p>
         <table class="table table-striped mt-2" id="tab-product">
             <thead>
                 <tr>
@@ -30,7 +31,7 @@
                 require_once '../../db_connnection.php';
 
                 $conn = OpenCon();
-                $query = "SELECT tenMonAn, giaNiemYet, phan_loai(maMonAn, giaNiemYet) AS phanLoai FROM mon_an ORDER BY giaNiemYet;";
+                $query = "CALL auto_categorize_dish()";
 
                 $result = $conn->query($query);
 
@@ -39,9 +40,9 @@
                     while ($row = $result->fetch_assoc()) {
                 ?>
                         <tr class="justify-content-center">
-                            <th class='align-middle' scope="row"><?php echo $row['tenMonAn'] ?></th>
-                            <td class='align-middle'><?php echo $row['giaNiemYet'] ?></td>
-                            <td class='align-middle'><?php echo $row['phanLoai'] ?></td>
+                            <th class='align-middle' scope="row"><?php echo $row['name'] ?></th>
+                            <td class='align-middle'><?php echo $row['price'] ?></td>
+                            <td class='align-middle'><?php echo $row['category'] ?></td>
                         </tr>
                 <?php
                     }

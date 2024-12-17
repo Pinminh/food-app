@@ -1,3 +1,8 @@
+<?php
+require_once '../db_connnection.php';
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,8 +17,9 @@
 
 <body>
     <div class="container">
-        <a href="../user" class="btn btn-warning float-end">Chuyển đến màn hình quản lí người dùng</a>
-        <h1 class="my-3">Manage Products</h1>
+        <a href="../user" class="btn btn-warning float-end m-1">Khách hàng</a>
+        <a href="../restaurant" class="btn btn-warning float-end m-1">Nhà hàng</a>
+        <h1 class="my-3">Quản lý món ăn</h1>
         <hr>
 
         <!-- Modal for error -->
@@ -74,6 +80,27 @@
                                 <div class="invalid-feedback">Mã món ăn là bắt buộc</div>
                             </div>
                             <div class="form-group">
+                                <select class="form-select" name="maNhaHang">
+                                    <option selected>Thuộc về nhà hàng</option>
+                                    <?php
+                                        $conn = OpenCon();
+                                        $restaurant_query = 'CALL get_all_restaurants()';
+                                        $restaurants = $conn->query($restaurant_query);
+
+                                        if ( $restaurants->num_rows > 0) {
+                                            while ($restaurant = $restaurants->fetch_assoc()) {
+                                    ?>
+                                                <option value="<?php echo $restaurant['username'] ?>">
+                                                    <?php echo $restaurant['username'] . ' - ' . $restaurant['name'] ?>
+                                                </option>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
+                                </select>
+                                <div class="invalid-feedback">Nhà hàng là bắt buộc</div>
+                            </div>
+                            <div class="form-group">
                                 <label>Mô tả món ăn</label>
                                 <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonAn" style="height: 150px;"></textarea>
                             </div>
@@ -105,12 +132,12 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Giá cần phân loại</label>
-                                <input class="form-control my-2" type="number" placeholder="Giá cần phân loại" name="gia" />
+                                <input class="form-control my-2" type="number" placeholder="Giá cần phân loại" name="price" />
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Thực hiện</button>
-                            <button class="btn btn-primary" type="submit">Thêm mới</button>
+                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Đóng</button>
+                            <button class="btn btn-primary" type="submit">Thực hiện</button>
                         </div>
                     </form>
                 </div>
@@ -132,27 +159,26 @@
             </thead>
             <tbody>
                 <?php
-                require_once '../db_connnection.php';
 
                 $conn = OpenCon();
-                $query = "SELECT * FROM `mon_an`;";
-
+                $query = "CALL get_all_dishes()";
                 $result = $conn->query($query);
+                CloseCon($conn);
 
                 if ($result->num_rows > 0) {
                     // OUTPUT DATA OF EACH ROW
                     while ($row = $result->fetch_assoc()) {
                 ?>
                         <tr class="justify-content-center">
-                            <th class='align-middle' scope="row"><?php echo $row['tenMonAn'] ?></th>
-                            <td class='align-middle'><?php echo $row['maMonAn'] ?></td>
-                            <td class='align-middle'><?php echo $row['moTaMonan'] ?></td>
-                            <td class='align-middle'><?php echo $row['giaNiemYet'] ?></td>
+                            <th class='align-middle' scope="row"><?php echo $row['name'] ?></th>
+                            <td class='align-middle'><?php echo $row['id'] ?></td>
+                            <td class='align-middle'><?php echo $row['description'] ?></td>
+                            <td class='align-middle'><?php echo $row['price'] ?></td>
                             <td class='align-middle'>
                                 <div class="d-inline-flex">
-                                    <a class="btn btn-secondary m-1" href="../view/view_detail/index.php?maMonAn=<?php echo $row['maMonAn'] ?>">Read</a>
-                                    <button type='button' class='btn-edit btn btn-primary m-1' data-bs-tenMonAn='<?php echo $row['tenMonAn'] ?>' data-bs-maMonAn='<?php echo $row['maMonAn'] ?>' data-bs-moTaMonan='<?php echo $row['moTaMonan'] ?>' data-bs-giaNiemYet='<?php echo $row['giaNiemYet'] ?>' data-bs-target='#Edit' data-bs-toggle='modal'>Edit</button>
-                                    <button type='button' class='btn-delete btn btn-danger m-1' data-bs-tenMonAn='<?php echo $row['tenMonAn'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'>Delete</button>
+                                    <a class="btn btn-secondary m-1" href="../view/view_detail/index.php?maMonAn=<?php echo $row['id'] ?>">Read</a>
+                                    <button type='button' class='btn-edit btn btn-primary m-1' data-bs-tenMonAn='<?php echo $row['name'] ?>' data-bs-maMonAn='<?php echo $row['id'] ?>' data-bs-moTaMonan='<?php echo $row['description'] ?>' data-bs-giaNiemYet='<?php echo $row['price'] ?>' data-bs-target='#Edit' data-bs-toggle='modal'>Edit</button>
+                                    <button type='button' class='btn-delete btn btn-danger m-1' data-bs-tenMonAn='<?php echo $row['name'] ?>' data-bs-maMonAn='<?php echo $row['id'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'>Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -163,7 +189,8 @@
 
             </tbody>
         </table>
-
+        
+        <!-- Modal for editting food -->
         <div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="Edit" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -184,7 +211,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Mô tả món ăn</label>
-                                <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonAn" style="height: 150px;" /></textarea>
+                                <textarea class="form-control my-2" placeholder="Mô tả món ăn" name="moTaMonAn" style="height: 150px;"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Giá niêm yết</label>
@@ -200,7 +227,8 @@
                 </div>
             </div>
         </div>
-
+        
+        <!-- Modal for deleting food -->
         <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -212,7 +240,7 @@
                         <div class="modal-body">
                             <input type="text" name="tenMonAn" class="form-control my-2" readonly />
                             <input type="text" name="maMonAn" class="form-control my-2" readonly />
-                            <p>Bạn chắc chưa?</p>
+                            <p>Bạn chắc muốn xóa món ăn này?</p>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary btn-outline-light" type="button" data-bs-dismiss="modal">Đóng lại</button>
