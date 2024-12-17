@@ -3,7 +3,7 @@ require_once '../db_connnection.php';
 $soDiem = $_POST['soDiem'];
 
 $conn = OpenCon();
-$query = "CALL point_khach_hang($soDiem);";
+$query = "CALL get_customers_by_point($soDiem);";
 
 if ($conn->query($query)) {
     echo "New record created successfully";

@@ -48,11 +48,10 @@ if ($_FILES['fileToUpload']['size'] > IMG_MAX_SIZE) {
 move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
 $conn = OpenCon();
-$query1 = "CALL Add_tai_khoan('$tenDangNhap', '$matKhau');";
-$query2 = "CALL Add_khach_hang('$tenDangNhap', '$tenKhachHang', '$diaChi', '$sdt', '$target_file', '$diemTichLuy');";
+$query = "CALL add_customer('$tenDangNhap', '$matKhau', '$tenKhachHang', '$diaChi', '$sdt', '$target_file', '$diemTichLuy');";
 
 try {
-    if ($conn->query($query1) === TRUE && $conn->query($query2) === TRUE) {
+    if ($conn->query($query) === TRUE) {
         echo json_encode(['success' => 'Thêm khách hàng thành công']);
     } else {
         echo json_encode(['error' => "Lỗi kết nối cơ sở dữ liệu: {$conn->error}"]);

@@ -7,7 +7,7 @@ require_once '../db_connnection.php';
 $tenDangNhap = htmlspecialchars($_POST['tenDangNhap'] ?? '');
 
 $conn = OpenCon();
-$query = "CALL Delete_khach_hang('$tenDangNhap')";
+$query = "CALL delete_customer('$tenDangNhap')";
 
 try {
     if ($conn->query($query) === TRUE) {

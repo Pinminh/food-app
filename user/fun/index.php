@@ -12,9 +12,9 @@
 
 <body>
     <div class="container">
-        <a href="../../product/" class="btn btn-warning float-end mx-2">Chuyển đến màn hình quản lí sản phẩm</a>
-        <a href="../../user" class="btn btn-warning float-end">Chuyển đến màn hình quản lí khách hàng</a>
-        <h1 class="my-3">Manage User</h1>
+        <a href="../../product/" class="btn btn-warning float-end mx-2">Sản phẩm</a>
+        <a href="../../user" class="btn btn-warning float-end">Khách hàng</a>
+        <h1 class="my-3">Quản lý khách hàng</h1>
         <hr>
         <h4 class="text-primary my-4">Danh sách khách hàng có điểm tích lũy lớn hơn <?php echo $_GET['soDiem']?></h4>
         <table class="table table-striped mt-2" id="tab-user">
@@ -35,7 +35,7 @@
 
                 $soDiem = $_GET['soDiem'];
                 $conn = OpenCon();
-                $query = "CALL point_khach_hang($soDiem);";
+                $query = "CALL get_customers_by_point($soDiem);";
 
                 $result = $conn->query($query);
 
@@ -44,12 +44,12 @@
                     while ($row = $result->fetch_assoc()) {
                 ?>
                         <tr class="justify-content-center">
-                            <th class='align-middle' scope="row"><?php echo $row['tenDangNhap'] ?></th>
-                            <td class='align-middle'><?php echo $row['tenKhachHang'] ?></td>
-                            <td class='align-middle'><?php echo $row['diaChi'] ?></td>
-                            <td class='align-middle'><?php echo $row['sdt'] ?></td>
-                            <td><img src='../<?php echo $row['anhDaiDien'] ?>' class='border rounded-circle p-1' width='72' height='72'></td>
-                            <td class='align-middle'><?php echo $row['diemTichLuy'] ?></td>
+                            <th class='align-middle' scope="row"><?php echo $row['username'] ?></th>
+                            <td class='align-middle'><?php echo $row['name'] ?></td>
+                            <td class='align-middle'><?php echo $row['address'] ?></td>
+                            <td class='align-middle'><?php echo $row['phone'] ?></td>
+                            <td><img src='../<?php echo $row['avatar'] ?>' class='border rounded-circle p-1' width='72' height='72'></td>
+                            <td class='align-middle'><?php echo $row['points'] ?></td>
                         </tr>
                 <?php
                     }

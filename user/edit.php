@@ -53,7 +53,7 @@ if ($path) {
 }
 
 $conn = OpenCon();
-$query = "CALL Update_khach_hang('$tenDangNhap', '$tenKhachHang', '$diaChi', '$sdt', '$target_file', '$diemTichLuy');";
+$query = "CALL update_customer('$tenDangNhap', '$tenKhachHang', '$diaChi', '$sdt', '$target_file', '$diemTichLuy');";
 
 try {
     if ($conn->query($query) === TRUE) {

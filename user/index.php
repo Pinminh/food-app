@@ -1,3 +1,8 @@
+<?php
+require_once '../db_connnection.php';
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -14,12 +19,14 @@
 
 <body>
     <div class="container">
-        <a href="../product" class="btn btn-warning float-end">Chuyển đến màn hình quản lí sản phẩm</a>
-        <h1 class="my-3">Manage User</h1>
+        <a href="../restaurant" class="btn btn-warning float-end m-1">Nhà hàng</a>
+        <a href="../product" class="btn btn-warning float-end m-1">Món ăn</a>
+        
+        <h1 class="my-3">Quản lý khách hàng</h1>
         <hr>
 
         <!-- Modal for submitting users -->
-        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add">Thêm người dùng mới</button>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add">Thêm khách hàng</button>
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -105,16 +112,6 @@
             </div>
         </div>
         </div>
-
-        <script>
-            $(document).ready(function () {
-                const errorMessage = <?php echo json_encode($error_message); ?>;
-                if (errorMessage) {
-                    $('#errorMessage').text(errorMessage);
-                    $('#errorModal').modal('show');
-                }
-            });
-        </script>
         
         <!-- Modal for searching users whose point is greater than some limit -->
         <button class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#fun">Khách hàng có điểm cao hơn ...</button>
@@ -156,11 +153,9 @@
             </thead>
             <tbody>
                 <?php
-                require_once '../db_connnection.php';
 
                 $conn = OpenCon();
-                $query = "SELECT * FROM `khach_hang`;";
-
+                $query = "CALL get_all_customers()";
                 $result = $conn->query($query);
 
                 if ($result->num_rows > 0) {
@@ -168,16 +163,16 @@
                     while ($row = $result->fetch_assoc()) {
                 ?>
                         <tr class="justify-content-center">
-                            <th class='align-middle' scope="row"><?php echo $row['tenDangNhap'] ?></th>
-                            <td class='align-middle'><?php echo $row['tenKhachHang'] ?></td>
-                            <td class='align-middle'><?php echo $row['diaChi'] ?></td>
-                            <td class='align-middle'><?php echo $row['sdt'] ?></td>
-                            <td><img src='<?php echo $row['anhDaiDien'] ?>' class='border rounded-circle p-1' width='72' height='72'></td>
-                            <td class='align-middle'><?php echo $row['diemTichLuy'] ?></td>
+                            <th class='align-middle' scope="row"><?php echo $row['username'] ?></th>
+                            <td class='align-middle'><?php echo $row['name'] ?></td>
+                            <td class='align-middle'><?php echo $row['address'] ?></td>
+                            <td class='align-middle'><?php echo $row['phone'] ?></td>
+                            <td><img src='<?php echo $row['avatar'] ?>' class='border rounded-circle p-1' width='72' height='72'></td>
+                            <td class='align-middle'><?php echo $row['points'] ?></td>
                             <td class='align-middle'>
                                 <div class="d-inline-flex">
-                                    <button type='button' class='btn-edit btn btn-primary m-1' data-bs-tenDangNhap='<?php echo $row['tenDangNhap'] ?>' data-bs-tenKhachHang='<?php echo $row['tenKhachHang'] ?>' data-bs-diaChi='<?php echo $row['diaChi'] ?>' data-bs-sdt='<?php echo $row['sdt'] ?>' data-bs-anhDaiDien='<?php echo $row['anhDaiDien'] ?>' data-bs-diemTichLuy='<?php echo $row['diemTichLuy'] ?>' data-bs-target='#Edit' data-bs-toggle='modal'>Edit</button>
-                                    <button type='button' class='btn-delete btn btn-danger m-1' data-bs-tenDangNhap='<?php echo $row['tenDangNhap'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'>Delete</button>
+                                    <button type='button' class='btn-edit btn btn-primary m-1' data-bs-tenDangNhap='<?php echo $row['username'] ?>' data-bs-tenKhachHang='<?php echo $row['name'] ?>' data-bs-diaChi='<?php echo $row['address'] ?>' data-bs-sdt='<?php echo $row['phone'] ?>' data-bs-anhDaiDien='<?php echo $row['avatar'] ?>' data-bs-diemTichLuy='<?php echo $row['points'] ?>' data-bs-target='#Edit' data-bs-toggle='modal'>Edit</button>
+                                    <button type='button' class='btn-delete btn btn-danger m-1' data-bs-tenDangNhap='<?php echo $row['username'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'>Delete</button>
                                 </div>
                             </td>
                         </tr>
