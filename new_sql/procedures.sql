@@ -94,7 +94,7 @@ BEGIN
     ELSEIF NOT EXISTS (
         SELECT 1 
         FROM restaurant 
-        WHERE name = restaurant_name
+        WHERE username = restaurant_name
     ) THEN
         SIGNAL SQLSTATE '45000' 
         SET MESSAGE_TEXT = 'Nhà hàng không tồn tại';
