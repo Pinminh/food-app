@@ -142,7 +142,6 @@ END$$
 
 CREATE PROCEDURE `update_restaurant` (
     IN `p_username` VARCHAR(16),
-    IN `p_password` VARCHAR(255),
     IN `p_name` VARCHAR(255),
     IN `p_address` VARCHAR(255),
     IN `p_phone` VARCHAR(10),
@@ -179,21 +178,87 @@ CREATE PROCEDURE `update_dish` (
     IN `d_name` VARCHAR(255), 
     IN `d_code` VARCHAR(5), 
     IN `d_des` TEXT, 
-    IN `d_price` DECIMAL(10, 2), 
-    IN `r_name` VARCHAR(16)
+    IN `d_price` DECIMAL(10, 2)
 )
 BEGIN
     IF (NOT EXISTS (SELECT * FROM `dish` WHERE `id` = `d_code`)) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Mã món ăn không tồn tại';
     ELSEIF (`d_price` < 0) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Giá món ăn tối thiểu là 0';
-    ELSEIF (NOT EXISTS (SELECT * FROM `restaurant` WHERE `username` = `r_name`)) THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Nhà hàng không tồn tại';
     ELSE
         UPDATE `dish` 
-        SET name = `d_name`, description = `d_des`, `price` = `d_price`, `restaurant` = `r_name` 
+        SET name = `d_name`, description = `d_des`, `price` = `d_price`
         WHERE `id` = `d_code`;
     END IF;
+END$$
+
+
+CREATE PROCEDURE `get_all_customers` ()
+BEGIN
+    SELECT * FROM `customer`;
+END$$
+
+
+CREATE PROCEDURE `get_customers_by_point` (
+    IN `threshold_point` INT
+)
+BEGIN
+    IF (`threshold_point` < 0) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Điểm giới hạn không thể âm';
+    ELSE
+        SELECT * FROM `customer`
+        WHERE `customer`.`points` >= `threshold_point`;
+    END IF;
+END$$
+
+
+CREATE PROCEDURE `get_all_restaurants` ()
+BEGIN
+    SELECT * FROM `restaurant`;
+END$$
+
+
+CREATE PROCEDURE `get_all_dishes` ()
+BEGIN
+    SELECT * FROM `dish`;
+END$$
+
+
+CREATE PROCEDURE `get_dishes_by_price` (
+    IN `threshold_price` INT
+)
+BEGIN
+    IF (`threshold_price` < 0) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Giá giới hạn không thể âm';
+    ELSE
+        SELECT * FROM `dish`
+        WHERE `dish`.`price` >= `threshold_price`
+        ORDER BY `dish`.`price`;
+    END IF;
+END$$
+
+
+CREATE PROCEDURE `count_dish_per_group_by_price` (IN `threshold_price` INT)
+BEGIN
+    IF (threshold_price < 0) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Giá giới hạn không thể âm';
+    ELSE
+        SELECT dish_group.name, COUNT(*) AS amount
+        FROM (dish_group LEFT JOIN dish_dish_group ON dish_dish_group.dish_group = dish_group.id)
+        LEFT JOIN dish ON dish.id = dish_dish_group.dish     
+        WHERE dish.price >= threshold_price
+        GROUP BY dish_group.name
+        HAVING amount >= 1 
+        ORDER BY amount, dish_group.name;
+    END IF;
+END$$
+
+
+CREATE PROCEDURE `auto_categorize_dish` ()
+BEGIN
+    SELECT `name`, price, get_dish_category(id, price) AS category
+    FROM dish
+    ORDER BY price;
 END$$
 
 DELIMITER ;
