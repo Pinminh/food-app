@@ -1,5 +1,5 @@
 ﻿-- Delivery Companies
-INSERT INTO delivery_company (id, name) VALUES
+INSERT INTO `delivery_company` (`id`, `name`) VALUES
     ('DC001', 'Giao hàng nhanh'),
     ('DC002', 'Giao hàng tiết kiệm'),
     ('DC003', 'Grab'),
@@ -7,7 +7,7 @@ INSERT INTO delivery_company (id, name) VALUES
     ('DC005', 'GoViet');
 
 -- Customers
-INSERT INTO customer (username, password, name, address, phone, avatar, points) VALUES
+INSERT INTO `customer` (`username`, `password`, `name`, `address`, `phone`, `avatar`, `points`) VALUES
     ('customer1', '12345678', 'Nguyen Van A', '123 Le Loi, District 1, HCM', '0901234567', 'img/2022_12_07_06_59_24am.png', 500),
     ('customer2', '12345678', 'Tran Thi B', '456 Nguyen Hue, District 1, HCM', '0902345678', 'img/2022_12_07_06_44_02am.png', 300),
     ('customer3', '12345678', 'Le Hoang C', '789 Ly Tu Trong, District 1, HCM', '0903456789', 'img/2022_12_07_06_45_03am.png', 100),
@@ -15,7 +15,7 @@ INSERT INTO customer (username, password, name, address, phone, avatar, points) 
     ('customer5', '12345678', 'Nguyen Thi E', '654 Vo Van Tan, District 3, HCM', '0905678901', 'img/2022_12_08_06_32_22pm.png', 150);
 
 -- Recipients
-INSERT INTO recipient (phone, name, customer) VALUES
+INSERT INTO `recipient` (`phone`, `name`, `customer`) VALUES
     ('0901234567', 'Nguyen Van A', 'customer1'),
     ('0902345678', 'Tran Thi B', 'customer2'),
     ('0903456789', 'Le Hoang C', 'customer3'),
@@ -23,7 +23,7 @@ INSERT INTO recipient (phone, name, customer) VALUES
     ('0905678901', 'Nguyen Thi E', 'customer5');
 
 -- Insert Dish Groups
-INSERT INTO dish_group (id, name, description) VALUES
+INSERT INTO `dish_group` (`id`, `name`, `description`) VALUES
     ('DG001', 'Gỏi', 'Món ăn bằng cá, tôm, thịt trộn với rau thơm sống và giấm. Tuy nhiên cũng có thể có các biến thế khác'),
     ('DG002', 'Mì', 'Món ăn dạng sợi dài, được dùng kèm với nước sốt hoặc nước dùng. Thường có nguồn gốc nước ngoài.'),
     ('DG003', 'Cơm', 'Món ăn làm từ gạo, được phục vụ kèm với các món khác. Là món truyền thống của các nước châu Á'),
@@ -32,7 +32,7 @@ INSERT INTO dish_group (id, name, description) VALUES
     ('DG006', 'Bánh', 'Món ăn gồm bột bánh được làm chín và các thành phần khác. Có nhiều dạng bánh khác nhau với cách chế ');
 
 -- Insert additional restaurants with Vietnamese descriptions
-INSERT INTO restaurant (username, password, name, address, phone, description) VALUES
+INSERT INTO `restaurant` (`username`, `password`, `name`, `address`, `phone`, `description`) VALUES
     ('username1', 'password1', 'Quán cháo lòng bà Út', '193 Cô Giang, Quận 1, HCM', '0901111111', 'Hơn 80 năm nay, gánh cháo lòng Cô Út trên đường Cô Giang – quận 1, là địa chỉ quen thuộc của thực khách ở Sài Gòn. Với hương vị đậm đà, vừa vặn mà ai ăn cũng khen nức nở món cháo của bà. Đây là một trong các quán ăn ngon Sài Gòn mà bạn nên thưởng thức ít nhất một lần khi du lịch đến đây.'),
     ('username2', 'password2', 'Bánh xèo', '46A Đinh Công Tráng, Phường Tân Định, Quận 1', '0902222222', 'Nếu bạn muốn thưởng thức được món bánh xèo đúng hương vị thì quán bánh xèo này là một trong những các quán ăn ngon Sài Gòn ngon nức tiếng từ lâu. Bánh xèo theo kiểu miền Nam có vỏ rất giòn, bên trong phần nhân khá nhiều tôm thịt, tôm mềm nên khi cuốn rất tiện lợi.'),
     ('username3', 'password3', 'Quán bánh mì Hòa Mã', '53 Cao Thắng, Quận 3', '0903333333', 'Bạn sẽ không khó để tìm đến tiệm bánh mì nhỏ mang tên Hòa Mã nằm trên đường Cao Thắng, quận 3. Theo lời kể lại của nhiều người thì đây là một trong những nơi bán bánh mì thịt đầu tiên ở Sài Gòn. Chủ nhân của nó là hai vợ chồng người Bắc di cư vào Nam từ trước những năm 50. Một ổ bánh mì thơm ngon phải kể đến là phần thập cẩm được chiên trong chiếc chảo nhỏ. Bên trong chảo là đủ thứ nguyên liệu hấp dẫn như trứng gà ốp la, thịt nguội, xúc xích, chả cá, chả lụa… Tất cả đều được chiên nóng cháy cạnh, tỉ mỉ cùng với ít hành tây và dùng nóng với bánh mì. Đây là một trong các quán ăn ngon Sài Gòn mà du khách nào cũng yêu thích khi tới Sài Gòn.'),
@@ -43,7 +43,7 @@ INSERT INTO restaurant (username, password, name, address, phone, description) V
     ('username8', 'password8', 'Bún măng vịt', 'Hẻm 281 Lê Văn Sỹ, Phường 1, Quận Tân Bình', '0908888888', 'Giữa Sài Gòn bao la quán xá thế này để tìm được một quán bún măng gỏi vịt ngon là cả một vấn đề. Quán nằm sâu trong con hẻm đường Lê Văn Sỹ, quận Tân Bình. Vậy mà quán bún vịt này bán gần 50 năm nổi tiếng chỉ bán trong vòng 1 tiếng là hết sạch. Đĩa gỏi đấy ắp toàn thịt là thịt, vịt ít mỡ da mỏng, chắc thịt và mềm. Tô bún măng rất thơm và đậm đà, măng ngon sần sật thêm chén nước chấm chỉ cần pha chút sa tế thì quá là tuyệt vời rồi. Note liền quán ăn ngon Sài Gòn này nhé.');
 
 -- Insert restaurant images to match the new restaurants
-INSERT INTO restaurant_image (restaurant, image) VALUES
+INSERT INTO `restaurant_image` (`restaurant`, `image`) VALUES
     ('username1', 'https://cdn3.ivivu.com/2019/06/an-sap-top-20-quan-an-ngon-sai-gon-b%E1%BA%A1n-nhat-dinh-phai-thu-ivi'),
     ('username2', 'https://cdn3.ivivu.com/2019/06/an-sap-top-20-quan-an-ngon-sai-gon-b%E1%BA%A1n-nhat-dinh-phai-thu-ivi'),
     ('username3', 'https://cdn3.ivivu.com/2019/06/an-sap-top-20-quan-an-ngon-sai-gon-b%E1%BA%A1n-nhat-dinh-phai-thu-ivi'),
@@ -54,7 +54,7 @@ INSERT INTO restaurant_image (restaurant, image) VALUES
     ('username8', 'https://cdn3.ivivu.com/2019/06/an-sap-top-20-quan-an-ngon-sai-gon-b%E1%BA%A1n-nhat-dinh-phai-thu-ivi');
 
 -- Add some dishes for these new restaurants
-INSERT INTO dish (id, name, price, restaurant, description) VALUES
+INSERT INTO `dish` (`id`, `name`, `price`, `restaurant`, `description`) VALUES
     ('D001', 'Gỏi củ hủ dừa', 200000, 'username1', 'Món gỏi củ hủ dừa tôm thịt là món ăn đặc sản của người miền Tây, thường được dùng làm món khai vị.'),
     ('D002', 'Gỏi ngó sen tôm thịt', 100000, 'username2', 'Gỏi ngó sen tôm thịt là món gỏi phổ biến trong các bữa tiệc, với hương vị thanh ngọt của tôm, thịt.'),
     ('D003', 'Gỏi bò mè bóp thầu', 76000, 'username1', 'Gỏi bò mè bóp thầu'),
@@ -89,7 +89,7 @@ INSERT INTO dish (id, name, price, restaurant, description) VALUES
     ('D032', 'Bánh cuốn nóng', 52000, 'username7', 'Món ăn đơn giản nhưng vẫn có dấu ấn riêng với thịt xay lẫn trong bánh, nước chấm đậm đà'),
     ('D033', 'Bánh ướt', 70000, 'username8', 'Món ăn đơn giản đổi vị cho ngày chán cơm');
 
-INSERT INTO dish_images (dish, image) VALUES
+INSERT INTO `dish_image` (`dish`, `image`) VALUES
     ('D001', 'https://cdn.tgdd.vn/Files/2022/04/04/1423782/goi-y-8-mon-nguoi-khai-vi-cho-nhung-buoi-tiec-hoi-hop-voi-gia-dinh-202204040912057499.jpg'),
     ('D002', 'https://cdn.tgdd.vn/Files/2022/04/04/1423782/goi-y-8-mon-nguoi-khai-vi-cho-nhung-buoi-tiec-hoi-hop-voi-gia-dinh-202204040914134517.jpg'),
     ('D003', 'https://cdn.tgdd.vn/Files/2022/04/04/1423782/goi-y-8-mon-nguoi-khai-vi-cho-nhung-buoi-tiec-hoi-hop-voi-gia-dinh-202204040914556821.jpg'),
@@ -125,7 +125,7 @@ INSERT INTO dish_images (dish, image) VALUES
     ('D014', 'https://yt.cdnxbvn.com/medias/uploads/209/209926-nam-xao-thit-bo.jpg');
 
 -- Update dish groups to match dish categories
-INSERT INTO dish_dish_group (dish, dish_group) VALUES
+INSERT INTO `dish_dish_group` (`dish`, `dish_group`) VALUES
     ('D001', 'DG001'), -- Gỏi
     ('D002', 'DG001'),
     ('D003', 'DG001'),
@@ -161,13 +161,13 @@ INSERT INTO dish_dish_group (dish, dish_group) VALUES
 
 
 -- Discounts
-INSERT INTO discount (id, name, type, discount_amount, discount_percentage, restaurant, start_date, end_date) VALUES
-    ('DC001', 'New Year Promo', 'fixed', 20000, NULL, 'restaurant1', '2024-12-25', '2025-01-05'),
-    ('DC002', 'Weekend Special', 'percentage', NULL, 0.15, 'restaurant2', '2024-12-01', '2024-12-31'),
-    ('DC003', 'Loyalty Discount', 'fixed', 30000, NULL, 'restaurant3', '2024-12-01', '2025-01-31');
+INSERT INTO `discount` (`id`, `name`, `type`, `discount_amount`, `discount_percentage`, `restaurant`, `start_date`, `end_date`) VALUES
+    ('DC001', 'New Year Promo', 'fixed', 20000, NULL, 'username1', '2024-12-25', '2025-01-05'),
+    ('DC002', 'Weekend Special', 'percentage', NULL, 0.15, 'username2', '2024-12-01', '2024-12-31'),
+    ('DC003', 'Loyalty Discount', 'fixed', 30000, NULL, 'username3', '2024-12-01', '2025-01-31');
 
 -- Orders
-INSERT INTO `order` (id, order_date, status, delivery_address, customer, total_price, recipient_phone, delivery_company) VALUES
+INSERT INTO `order` (`id`, `order_date`, `status`, `delivery_address`, `customer`, `total_price`, `recipient_phone`, `delivery_company`) VALUES
     ('O001', '2024-12-01', 'Delivered', '123 Le Loi, District 1, HCM', 'customer1', 95000, '0901234567', 'DC001'),
     ('O002', '2024-12-02', 'Pending', '456 Nguyen Hue, District 1, HCM', 'customer2', 60000, '0902345678', 'DC002'),
     ('O003', '2024-12-03', 'Processing', '789 Ly Tu Trong, District 1, HCM', 'customer3', 110000, '0903456789', 'DC003'),
@@ -175,7 +175,7 @@ INSERT INTO `order` (id, order_date, status, delivery_address, customer, total_p
     ('O005', '2024-12-05', 'Pending', '654 Vo Van Tan, District 3, HCM', 'customer5', 90000, '0905678901', 'DC005');
 
 -- Order Dishes
-INSERT INTO order_dish (order, dish, amount, current_price) VALUES
+INSERT INTO `order_dish` (`order`, `dish`, `amount`, `current_price`) VALUES
     ('O001', 'D001', 1, 50000),
     ('O001', 'D002', 1, 45000),
     ('O002', 'D003', 1, 60000),
@@ -187,7 +187,7 @@ INSERT INTO order_dish (order, dish, amount, current_price) VALUES
     ('O005', 'D009', 1, 120000);
 
 -- Order Delivery
-INSERT INTO order_delivery (order, delivery_company, shipper_name, shipper_phone, arrival, cost) VALUES
+INSERT INTO `order_delivery` (`order`, `delivery_company`, `shipper_name`, `shipper_phone`, `arrival`, `cost`) VALUES
     ('O001', 'DC001', 'Nguyen Van X', '0981234567', '2024-12-01', 20000),
     ('O002', 'DC002', 'Tran Van Y', '0982345678', '2024-12-02', 15000),
     ('O003', 'DC003', 'Le Thi Z', '0983456789', '2024-12-03', 25000),
@@ -195,7 +195,7 @@ INSERT INTO order_delivery (order, delivery_company, shipper_name, shipper_phone
     ('O005', 'DC005', 'Nguyen Thi V', '0985678901', '2024-12-05', 22000);
 
 -- Bills
-INSERT INTO bill (id, date, status, customer) VALUES
+INSERT INTO `bill` (`id`, `date`, `status`, `customer`) VALUES
     ('B001', '2024-12-01', 'Paid', 'customer1'),
     ('B002', '2024-12-02', 'Unpaid', 'customer2'),
     ('B003', '2024-12-03', 'Pending', 'customer3'),
@@ -203,7 +203,7 @@ INSERT INTO bill (id, date, status, customer) VALUES
     ('B005', '2024-12-05', 'Unpaid', 'customer5');
 
 -- Order Bill Discounts
-INSERT INTO order_bill_discount (order, bill, discount, paid_price) VALUES
+INSERT INTO `order_bill_discount` (`order`, `bill`, `discount`, `paid_price`) VALUES
     ('O001', 'B001', 'DC001', 75000),
     ('O002', 'B002', 'DC002', 51000),
     ('O003', 'B003', 'DC003', 80000),
@@ -211,7 +211,7 @@ INSERT INTO order_bill_discount (order, bill, discount, paid_price) VALUES
     ('O005', 'B005', 'DC002', 76500);
 
 -- Customer Discounts
-INSERT INTO customer_discount (customer, discount) VALUES
+INSERT INTO `customer_discount` (`customer`, `discount`) VALUES
     ('customer1', 'DC001'),
     ('customer2', 'DC002'),
     ('customer3', 'DC003'),
@@ -219,13 +219,13 @@ INSERT INTO customer_discount (customer, discount) VALUES
     ('customer5', 'DC002');
 
 -- Point Discounts
-INSERT INTO point_discount (customer, discount, points, discount_type, start_date, end_date) VALUES
+INSERT INTO `point_discount` (`customer`, `discount`, `points`, `discount_type`, `start_date`, `end_date`) VALUES
     ('customer1', 'DC001', 100, 'fixed', '2024-12-01', '2025-01-31'),
     ('customer2', 'DC002', 200, 'percentage', '2024-12-01', '2025-01-31'),
     ('customer3', 'DC003', 150, 'fixed', '2024-12-01', '2025-01-31');
 
 -- Feedback
-INSERT INTO feedback (customer, dish, ordinal, rating, comment, date) VALUES
+INSERT INTO `feedback` (`customer`, `dish`, `ordinal`, `rating`, `comment`, `date`) VALUES
     ('customer1', 'D001', 1, 5, 'Delicious!', '2024-12-01'),
     ('customer2', 'D003', 1, 4, 'Tasty, but a bit too spicy.', '2024-12-02'),
     ('customer3', 'D004', 1, 5, 'Perfect broken rice!', '2024-12-03'),
